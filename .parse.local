@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "_default": {
+      "link": "setup-b4a"
+    },
+    "setup-b4a": {
+      "applicationId": "YOUR_APP_ID"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+name: Deploy to Back4App on Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Back4App CLI
+        run: |
+          curl https://raw.githubusercontent.com/back4app/parse-cli/back4app/installer.sh | sudo /bin/bash
+
+      - name: Configure Back4App Account Key
+        run: echo "${{ secrets.B4A_ACCOUNT_KEY }}" | b4a configure accountkey
+
+      - name: Update APP_ID in parse.json
+        run: |
+          sed -i "s/APP_ID_PLACEHOLDER/${{ secrets.B4A_APP_ID }}/g" parse.json
+          cat parse.json  # (Opcional: verifica a substituição)
+
+      - name: Select Back4App App
+        run: b4a select "${{ secrets.B4A_APP_ID }}"
+
+      - name: Deploy Cloud Code
+        run: b4a deploy
+      
+      - name: Build and Deploy
+        run: |
+          npm install
+          npm run deploy-full
