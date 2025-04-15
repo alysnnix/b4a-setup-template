@@ -24,7 +24,7 @@ jobs:
 
       - name: Install project dependencies
         run: |
-          npm install
+          npm install --prefix ./ --package-lock-only --package=package.frontend.json
           cd client && npm install && cd ..
 
       - name: Configure .parse files
