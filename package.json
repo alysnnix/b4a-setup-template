@@ -8,9 +8,9 @@
     "url": "http://github.com/alysnnix"
   },
   "scripts": {
-    "dev": "cd client && vite dev",          
+    "dev": "cd client && vite dev",
     "preview": "cd client && vite preview",
-    "build-client": "cd client && vite build && mv dist ../public", 
+    "build-client": "cd client && vite build --emptyOutDir", 
 
     "deploy": "b4a deploy",
     "deploy-full": "npm run build-client && npm run deploy" 
