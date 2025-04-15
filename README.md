@@ -2,9 +2,8 @@
 
 This project is a template for deploying a Parse Server application on Back4App, with a React client built using Vite. The backend is designed to be easily deployable and includes a Docker setup for local development.
 
-![image](https://github.com/user-attachments/assets/20467c74-f8bd-40bc-a7f1-0be35b4f0d1e)
+![image](https://github.com/user-attachments/assets/14b55853-6239-4b06-80df-15962f538af0)
 
-This project is a template for deploying a Parse Server application on Back4App, with a React client built using Vite. The backend is designed to be easily deployable and includes a Docker setup for local development.
 
 ## GitHub Secrets Configuration
 
