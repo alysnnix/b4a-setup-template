@@ -2,7 +2,8 @@ name: Deploy to Back4App on Release
 
 on:
   push:
-      branches: [ main ]
+    branches:
+      - main
   release:
     types: [published]
 
@@ -14,16 +15,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: Install Back4App CLI
         run: |
           curl https://raw.githubusercontent.com/back4app/parse-cli/back4app/installer.sh | sudo /bin/bash
+
+      - name: Install project dependencies
+        run: |
+          npm install
+          cd client && npm install && cd ..
 
       - name: Configure .parse files
         env:
           B4A_APP_ID: ${{ secrets.B4A_APP_ID }}
           B4A_EMAIL: ${{ secrets.B4A_EMAIL }}
         run: |
-          # Arquivo .parse.local
           echo '{
             "applications": {
               "_default": { "link": "setup-b4a" },
@@ -31,16 +41,11 @@ jobs:
             }
           }' > .parse.local
 
-          # Arquivo .parse.project
           echo '{
             "project_type": 1,
             "parse": { "jssdk": "2.2.25" },
             "email": "'"$B4A_EMAIL"'"
           }' > .parse.project
-
-          # Verificação (opcional)
-          cat .parse.local
-          cat .parse.project
 
       - name: Configure Back4App Account Key
         run: echo "${{ secrets.B4A_ACCOUNT_KEY }}" | b4a configure accountkey
@@ -48,7 +53,6 @@ jobs:
       - name: Build React App
         run: |
           cd client
-          npm install
           npm run build
           mv dist ../public
 
