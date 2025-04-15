@@ -19,6 +19,18 @@ jobs:
       - name: Configure Back4App Account Key
         run: echo "${{ secrets.B4A_ACCOUNT_KEY }}" | b4a configure accountkey
 
+      - name: Configure Back4App CLI
+        run: |
+          mkdir -p ~/.parse
+          echo '{
+            "accounts": {
+              "default": {
+                "accountKey": "'"${{ secrets.B4A_ACCOUNT_KEY }}"'",
+                "email": "'"${{ secrets.B4A_EMAIL }}"'"
+              }
+            }
+          }' > ~/.parse/config.json
+
       - name: Update APP_ID in parse.json
         run: |
           sed -i "s/APP_ID_PLACEHOLDER/${{ secrets.B4A_APP_ID }}/g" parse.json
