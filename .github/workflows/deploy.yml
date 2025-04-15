@@ -52,9 +52,7 @@ jobs:
 
       - name: Build React App
         run: |
-          cd client
-          npm run build
-          mv dist ../public
+          npm run build-client
 
       - name: Deploy to Back4App
         run: b4a deploy
