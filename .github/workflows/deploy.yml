@@ -45,9 +45,6 @@ jobs:
       - name: Configure Back4App Account Key
         run: echo "${{ secrets.B4A_ACCOUNT_KEY }}" | b4a configure accountkey
 
-      - name: Select Back4App App
-        run: b4a select "${{ secrets.B4A_APP_ID }}"
-
       - name: Build React App
         run: |
           cd client
