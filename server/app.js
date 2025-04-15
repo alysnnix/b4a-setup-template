@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 const express = require('express');
 const { ParseServer } = require('parse-server');
 
@@ -12,10 +12,11 @@ const api = ParseServer({
   allowClientClassCreation: true, // Explicitly set to true to avoid deprecation warning
   allowExpiredAuthDataToken: true, // Explicitly set to true to avoid deprecation warning
   encodeParseObjectInCloudFunction: false, // Explicitly set to false to avoid deprecation warning
+  cloud: '../cloud/main.js',
 });
 
 // Serve static files from the "public" directory at the root
-app.use('/', express.static('public'));
+app.use('/', express.static('../public'));
 
 app.use('/parse', api.app); // Fix middleware initialization
 

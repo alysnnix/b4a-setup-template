@@ -9,11 +9,10 @@
   },
   "scripts": {
     "install-front-packages": "cd client && npm install",
-    "dev": "cd client && vite dev",
-    "preview": "cd client && vite preview",
+    "install-back-packages": "cd cloud && npm install",
+    "client": "cd client && npm run dev",
     "build-client": "cd client && npx vite build --emptyOutDir",
     "deploy": "b4a deploy",
-    "deploy-full": "npm run build-client && npm run deploy",
-    "server": "nodemon app.js"
+    "server": "cd server && npm start"
   }
 }
