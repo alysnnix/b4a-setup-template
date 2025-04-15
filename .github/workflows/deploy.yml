@@ -26,8 +26,8 @@ jobs:
 
       - name: Install project dependencies
         run: |
-          npm install
-          cd client && npm install && cd ..
+          npm ci
+          cd client && npm ci && cd ..
 
       - name: Configure .parse files
         env:
