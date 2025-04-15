@@ -8,9 +8,10 @@
     "url": "http://github.com/alysnnix"
   },
   "scripts": {
+    "install-front-packages": "cd client && npm install",
     "dev": "cd client && vite dev",
     "preview": "cd client && vite preview",
-    "build-client": "cd client && vite build --emptyOutDir",
+    "build-client": "cd client && npx vite build --emptyOutDir",
     "deploy": "b4a deploy",
     "deploy-full": "npm run build-client && npm run deploy",
     "server": "nodemon app.js"
