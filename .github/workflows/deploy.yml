@@ -24,20 +24,10 @@ jobs:
         run: |
           curl https://raw.githubusercontent.com/back4app/parse-cli/back4app/installer.sh | sudo /bin/bash
 
-      - name: Install Bun
-        run: |
-          curl -fsSL https://bun.sh/install | bash
-          export PATH="$HOME/.bun/bin:$PATH"
-
-      - name: Restart shell to apply bun path
-        shell: bash
-        run: |
-          echo 'export PATH="$HOME/.bun/bin:$PATH"' >> $GITHUB_ENV
-
       - name: Install project dependencies
         run: |
-          bun install
-          cd client && bun install && cd ..
+          npm install
+          cd client && npm install && cd ..
 
       - name: Configure .parse files
         env:
