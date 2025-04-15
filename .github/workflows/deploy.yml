@@ -1,11 +1,9 @@
 name: Deploy to Back4App on Release
 
 on:
-  push:
-    branches:
-      - main
   release:
-    types: [published]
+    types:
+      - published
 
 jobs:
   deploy:
